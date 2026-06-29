@@ -31,7 +31,7 @@ def parse_guess(raw: str):
 
     return True, value, None
 
-
+#FIX: corrected hint logic and refactored function to utils file using agent
 def check_guess(guess, secret):
     """
     Compare guess to secret and return (outcome, message).
