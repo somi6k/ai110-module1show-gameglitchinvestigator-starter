@@ -3,6 +3,7 @@
 Answer each question in 3 to 5 sentences. Be specific and honest about what actually happened while you worked. This is about your process, not trying to sound perfect.
 
 ## 1. What was broken when you started?
+The suggestion will incorrectly suggest going Lower even if the secret is a higher number. In other instances it will suggest going higher when the current guess is already higher than the secret. Upon finishing a game, the New Game button does not work. The game also quits out of attempts even though there are more attempts remaining. When switching difficutly level, game still allows numbers outside for stated range.
 
 - What did the game look like the first time you ran it?
 - List at least two concrete bugs you noticed at the start  
@@ -12,11 +13,12 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 
 Document at least 3 bugs you found. Add rows as needed.
 
-| Input | Expected Behavior | Actual Behavior | Console Output / Error |
-|-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+| Input               | Expected Behavior      | Actual Behavior | Console Output / Error |
+|---------------------|------------------------|-----------------|------------------------|
+| 44                  |  Too High hint            Too low hint        None
+| New Game            |  New game to start        Nothing happens     None
+| Guess 7 Submitted   |  Another attempt allowed     No more attempts     Out of attempts!    
+| Set to Hard            Range limited to 1-20      accepts 33 as input          None  
 
 ---
 
