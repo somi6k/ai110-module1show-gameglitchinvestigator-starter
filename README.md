@@ -33,11 +33,15 @@ It wrote the code, ran away, and now the game is unplayable.
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. User starts new game in normal mode
+2. User enters 39 (Secret is 80)
+3. Game states 'GO HIGHER'
+4. User enters 66
+5. Game states 'GO HIGHER'
+6. User enters 96
+7. Game states 'GO LOWER'
+8. User enters 80
+9. Game states 'Correct!' with a baloon animation
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
