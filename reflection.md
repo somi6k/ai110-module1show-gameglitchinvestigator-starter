@@ -23,6 +23,9 @@ Document at least 3 bugs you found. Add rows as needed.
 ---
 
 ## 2. How did you use AI as a teammate?
+I used Claude on this project to help write tests, fix bugs and write tests to verify. For the high/low bug, AI suggested to reverse the labels, stop casting the secret int to a string and then remove the unnecessary try/catch block.
+
+One example of AI correctly suggesting a bug fix was the identification of the attempts counter starting at 1 instead of 0. This prevented the user from receiving the number of tries as per the difficulty level. I verified the correctness by running the game, as well as having the AI write a unit test which passed successfully. 
 
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
