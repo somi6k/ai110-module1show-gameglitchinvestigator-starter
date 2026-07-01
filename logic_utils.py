@@ -47,6 +47,21 @@ def check_guess(guess, secret):
         return "Too Low", "📈 Go HIGHER!"
 
 
+def reset_game_state(state, secret):
+    """
+    Reset a game-state mapping for a fresh game.
+
+    `state` is any mutable mapping (Streamlit's session_state, or a plain dict
+    in tests). Every field that determines whether a game is playable must be
+    reset here. Score is intentionally left alone so it carries across games.
+    """
+    state["attempts"] = 0
+    state["secret"] = secret
+    state["status"] = "playing"
+    state["history"] = []
+    return state
+
+
 def update_score(current_score: int, outcome: str, attempt_number: int):
     """Update score based on outcome and attempt number."""
     if outcome == "Win":

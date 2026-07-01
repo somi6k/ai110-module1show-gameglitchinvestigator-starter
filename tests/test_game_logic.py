@@ -1,4 +1,4 @@
-from logic_utils import check_guess
+from logic_utils import check_guess, reset_game_state
 
 
 # ---------------------------------------------------------------------------
@@ -73,3 +73,50 @@ def test_player_gets_full_attempts_per_difficulty():
 def test_starting_at_one_loses_an_attempt_early():
     # Documents the OLD bug: initialising attempts at 1 robs one guess.
     assert simulate_full_game(8, start_attempts=1) == 7
+
+
+# ---------------------------------------------------------------------------
+# Bug #4: the "New Game" button didn't work after a game ended.
+#
+# The old handler reset `attempts` and `secret` but left `status` at
+# "won"/"lost". On the rerun, app.py hits `if status != "playing": st.stop()`
+# and freezes on the game-over screen, so the game never actually restarts.
+# reset_game_state must return the player to a fully playable state.
+# ---------------------------------------------------------------------------
+def test_new_game_restores_playable_status():
+    # A finished, losing game with some history on the board.
+    state = {
+        "attempts": 5,
+        "secret": 42,
+        "status": "lost",
+        "history": [10, 20, 30],
+        "score": 75,
+    }
+
+    reset_game_state(state, secret=7)
+
+    # The critical field: without this, the New Game button appears dead.
+    assert state["status"] == "playing"
+    # Counters and board are cleared so the fresh game starts clean.
+    assert state["attempts"] == 0
+    assert state["history"] == []
+    assert state["secret"] == 7
+
+
+def test_new_game_works_after_a_win():
+    state = {"attempts": 3, "secret": 50, "status": "won", "history": [50]}
+    reset_game_state(state, secret=99)
+    assert state["status"] == "playing"
+
+
+def test_new_game_keeps_score_across_games():
+    # Score is meant to persist between games; reset must not wipe it.
+    state = {
+        "attempts": 4,
+        "secret": 12,
+        "status": "lost",
+        "history": [1, 2],
+        "score": 120,
+    }
+    reset_game_state(state, secret=33)
+    assert state["score"] == 120

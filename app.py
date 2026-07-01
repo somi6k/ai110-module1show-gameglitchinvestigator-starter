@@ -5,6 +5,7 @@ from logic_utils import (
     check_guess,
     get_range_for_difficulty,
     parse_guess,
+    reset_game_state,
     update_score,
 )
 
@@ -78,10 +79,7 @@ with col3:
 
 #FIX reset status and history when pressing 'New Game' using agent for help
 if new_game:
-    st.session_state.attempts = 0
-    st.session_state.secret = random.randint(1, 100)
-    st.session_state.status = "playing"
-    st.session_state.history = []
+    reset_game_state(st.session_state, random.randint(1, 100))
     st.success("New game started.")
     st.rerun()
 
