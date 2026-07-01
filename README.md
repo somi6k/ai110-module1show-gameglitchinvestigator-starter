@@ -29,6 +29,16 @@ It wrote the code, ran away, and now the game is unplayable.
 - [ ] Detail which bugs you found.
 - [ ] Explain what fixes you applied.
 
+This game's purpose is to provide the user a guessing game experience, where the user is given a pre-defined number of chances to guess a random number within a pre-defined rance according to the selected difficulty level.
+
+The AI generated code had several bugs, including:
+   1. The Lower/Higher hints being reversed
+   2. The game counter starting at 1 instead of 0
+   3. The appropriate number of chances being allocated according to the correct difficulty setting
+   4. The new_game button not properly resetting the gameplay status
+
+Fixes for all of the above bugs were applied and documented. The higher/lower messages were reversed along with the removal of unnecessary type casting. The game counter bug was corrected to start the game at 0 attempts, and the new_game button logic was modified so that the game status and history were also reset when the button was pushed.
+
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
@@ -48,10 +58,19 @@ Describe your fixed game in numbered steps so a reader can follow along without 
 ## 🧪 Test Results
 
 ```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
-```
+collected 9 items                                                                                                                                               
+
+tests/test_game_logic.py::test_winning_guess PASSED                                                                                                       [ 11%]
+tests/test_game_logic.py::test_guess_too_high_tells_player_to_go_lower PASSED                                                                             [ 22%]
+tests/test_game_logic.py::test_guess_too_low_tells_player_to_go_higher PASSED                                                                             [ 33%]
+tests/test_game_logic.py::test_check_guess_compares_numerically_not_lexicographically PASSED                                                              [ 44%]
+tests/test_game_logic.py::test_player_gets_full_attempts_per_difficulty PASSED                                                                            [ 55%]
+tests/test_game_logic.py::test_starting_at_one_loses_an_attempt_early PASSED                                                                              [ 66%]
+tests/test_game_logic.py::test_new_game_restores_playable_status PASSED                                                                                   [ 77%]
+tests/test_game_logic.py::test_new_game_works_after_a_win PASSED                                                                                          [ 88%]
+tests/test_game_logic.py::test_new_game_keeps_score_across_games PASSED                                                                                   [100%]
+
+====================================================================== 9 passed in 0.03s =======================================================================
 
 ## 🚀 Stretch Features
 
